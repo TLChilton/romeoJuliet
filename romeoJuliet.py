@@ -38,6 +38,7 @@ def menu(flag):
         sel = menu(flag)
     return sel
 
+
 # Beginning Menu
 print("\033[091mWelcome to Romeo and Juliet")
 sel = menu(0)
