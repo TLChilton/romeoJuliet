@@ -2,10 +2,7 @@ import requests, colorama
 colorama.init()
 from pathlib import Path
 res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
-try:
-    res.raise_for_status()
-except Exception as exc:
-    print('There was a problem: %s' % (exc))
+res.raise_for_status()
 i = 0
 
 # Beginning Minu
