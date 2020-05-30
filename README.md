@@ -14,5 +14,6 @@ You can start the text from the beginning or start from a bookmark stored in a f
 * Error handling
 * User prompts and stylistic upgrades
 * Added option to download and store book locally
+* Added ability to traverse backwards in the text
 ## Future Updates
 * More error handling
