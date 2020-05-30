@@ -19,19 +19,21 @@ def getBook():
         book = res.text
     return book
 
+# Handles input for the beginning menu
 def menu(flag):
     print("\033[093m1: Start from the beginning")
     print("2: Start at a bookmark")
-    if (flag == 0):
+    if (flag == 0): # Special case for if book has already been saved
         print("3: Save book locally")
     print("0: Exit")
     print("Please enter a selection: \033[0m", end='')
     sel = input()
+
     # Input validation
     if sel != '1' and sel != '2' and sel != '3' and sel != '0':
         print("\033[091mERROR: \033[0mIncorrect input detected")
         sel = menu(flag)
-    elif sel == '3' and flag == 1:
+    elif sel == '3' and flag == 1: # Special case for if book has already been saved
         print("\033[091mERROR: \033[0mIncorrect input detected")
         sel = menu(flag)
     return sel
