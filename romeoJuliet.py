@@ -19,28 +19,29 @@ def getBook():
         book = res.text
     return book
 
+def menu(flag):
+    print("\033[093m1: Start from the beginning")
+    print("2: Start at a bookmark")
+    if (flag == 0):
+        print("3: Save book locally")
+    print("0: Exit")
+    print("Please enter a selection: \033[0m", end='')
+    sel = input()
+    # Input validation
+    if sel != '1' and sel != '2' and sel != '3' and sel != '0':
+        print("\033[091mERROR: \033[0mIncorrect input detected")
+        sel = menu(flag)
+    elif sel == '3' and flag == 1:
+        print("\033[091mERROR: \033[0mIncorrect input detected")
+        sel = menu(flag)
+    return sel
 
 # Beginning Menu
 print("\033[091mWelcome to Romeo and Juliet")
-print("\033[093m0: Start from the beginning")
-print("1: Start at a bookmark")
-print("2: Save book locally")
-print("3: Exit")
-print("Please enter a selection: \033[0m", end='')
-sel = input()
-
-# Input validation
-while sel != '0' and sel != '1' and sel != '2' and sel != '3':
-    print("\033[091mERROR: \033[0mIncorrect input detected")
-    print("\033[093m0: Start from the beginning")
-    print("1: Start at a bookmark")
-    print("2: Save book locally")
-    print("3: Exit")
-    print("Please enter a selection: \033[0m", end='')
-    sel = input()
+sel = menu(0)
 
 # Download handler
-if sel == '2':
+if sel == '3':
     bookPath = Path.cwd() / 'romeoJuliet.txt'
     if bookPath.exists():
         print("\033[091mERROR: \033[0mromeoJuliet.txt already exists")
@@ -51,25 +52,15 @@ if sel == '2':
         for chunk in res.iter_content(100000):
             bookFile.write(chunk)
         print("Book saved as romeoJuliet.txt")
-    print("\033[093m0: Start from the beginning")
-    print("1: Start at a bookmark")
-    print("3: Exit")
-    print("Please enter a selection: \033[0m", end='')
-    sel = input()
-    while sel != '0' and sel != '1' and sel != '3':
-        print("\033[091mERROR: \033[0mIncorrect input detected")
-        print("\033[093m0: Start from the beginning")
-        print("1: Start at a bookmark")
-        print("3: Exit")
-        print("Please enter a selection: \033[0m", end='')
-        sel = input()
+    sel = menu(1)
 
-if sel != '3':
+# If sel == '0' quit program
+if sel != '0':
     book = getBook()
     # Default is that our starting position is at the beginning
     i = 0
     # Bookmark Handler
-    if sel == '1':
+    if sel == '2':
         filePath = Path.cwd() / 'bookmark.txt'
         if filePath.exists():
             bookMarkFile = open(filePath, 'r')
