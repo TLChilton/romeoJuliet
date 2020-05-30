@@ -26,13 +26,13 @@ if sel == '1':
         bookMarkFile = open(filePath, 'r')
         i = int(bookMarkFile.read())
         if (i < len(res.text) - 1):
-            print("Starting from position %s" % i)
+            print("\033[092mStarting from position %s out of %s\033[0m" % (i, len(res.text)))
         else:
             print("ERROR: Bookmark is past length of text")
-            print("Starting from the beginning")
+            print("\033[092mStarting from the beginning\033[0m")
     else:
         print ("It doesn't appear a bookmark exists")
-        print ("Starting from the beginning")
+        print ("\033[092mStarting from the beginning\033[0m")
 
 # Main reading section
 while(i < len(res.text) - 1):
@@ -55,7 +55,7 @@ while(i < len(res.text) - 1):
         print("\033[093mCreate a bookmark? (y/n): \033[0m", end='')
         inp = input()
         if inp.lower() == 'y':
-            print("\033[092mCreating a bookmark at position %s in bookmark.txt\033[0m" % l)
+            print("\033[092mCreating a bookmark at position %s out of %s in bookmark.txt\033[0m" % (l, len(res.text)))
             bookMarkFile = open(Path.cwd() / 'bookmark.txt', 'w')
             bookMarkFile.write(str(l))
             bookMarkFile.close()
