@@ -10,7 +10,7 @@ You can start the text from the beginning or start from a bookmark stored in a f
 ## What I added
 * Ability to read the entire text
 * Ability to store bookmarks
-* Ability to start the text from a bookmart
+* Ability to start the text from a bookmark
 * Error handling
 * User prompts and stylistic upgrades
 ## Future Updates
