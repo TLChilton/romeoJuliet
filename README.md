@@ -8,10 +8,10 @@ Can be used with the console command "py romeoJuliet.py" within the directory it
 
 You can start the text from the beginning or start from a bookmark stored in a file called bookmark.txt
 ## What I added
-*Ability to read the entire text
-*Ability to store bookmarks
-*Ability to start the text from a bookmart
-*Error handling
-*User prompts and stylistic upgrades
+* Ability to read the entire text
+* Ability to store bookmarks
+* Ability to start the text from a bookmart
+* Error handling
+* User prompts and stylistic upgrades
 ## Future Updates
-*More error handling
+* More error handling
