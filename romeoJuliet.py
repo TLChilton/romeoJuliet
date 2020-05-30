@@ -21,7 +21,7 @@ def getBook():
 
 
 # Beginning Menu
-print("Welcome to Romeo and Juliet")
+print("\033[091mWelcome to Romeo and Juliet")
 print("\033[093m0: Start from the beginning")
 print("1: Start at a bookmark")
 print("2: Save book locally")
@@ -31,10 +31,10 @@ sel = input()
 
 # Input validation
 while sel != '0' and sel != '1' and sel != '2' and sel != '3':
-    print("ERROR: Incorrect input detected")
+    print("\033[091mERROR: \033[0mIncorrect input detected")
     print("\033[093m0: Start from the beginning")
     print("1: Start at a bookmark")
-    print("2: Download locally")
+    print("2: Save book locally")
     print("3: Exit")
     print("Please enter a selection: \033[0m", end='')
     sel = input()
@@ -43,7 +43,7 @@ while sel != '0' and sel != '1' and sel != '2' and sel != '3':
 if sel == '2':
     bookPath = Path.cwd() / 'romeoJuliet.txt'
     if bookPath.exists():
-        print("ERROR: romeoJuliet.txt already exists")
+        print("\033[091mERROR: \033[0mromeoJuliet.txt already exists")
     else:
         res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
         res.raise_for_status()
@@ -51,7 +51,13 @@ if sel == '2':
         for chunk in res.iter_content(100000):
             bookFile.write(chunk)
         print("Book saved as romeoJuliet.txt")
+    print("\033[093m0: Start from the beginning")
+    print("1: Start at a bookmark")
+    print("3: Exit")
+    print("Please enter a selection: \033[0m", end='')
+    sel = input()
     while sel != '0' and sel != '1' and sel != '3':
+        print("\033[091mERROR: \033[0mIncorrect input detected")
         print("\033[093m0: Start from the beginning")
         print("1: Start at a bookmark")
         print("3: Exit")
@@ -72,10 +78,11 @@ if sel == '1':
             print("\033[092mStarting from position %s out of %s\033[0m" %
                   (i, len(book)))
         else:
-            print("ERROR: Bookmark is past length of text")
+            print("\033[091mERROR: \033[0mBookmark is past length of text")
             print("\033[092mStarting from the beginning\033[0m")
+            i = 0
     else:
-        print("It doesn't appear a bookmark exists")
+        print("\033[091mERROR: \033[0mIt doesn't appear a bookmark exists")
         print("\033[092mStarting from the beginning\033[0m")
 
 # if sel == 3 exit the program
