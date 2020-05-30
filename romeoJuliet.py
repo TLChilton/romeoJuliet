@@ -64,29 +64,27 @@ if sel == '2':
         print("Please enter a selection: \033[0m", end='')
         sel = input()
 
-book = getBook() # Our book is stored as a string
-
-# Default is that our starting position is at the beginning
-i = 0
-# Bookmark Handler
-if sel == '1':
-    filePath = Path.cwd() / 'bookmark.txt'
-    if filePath.exists():
-        bookMarkFile = open(filePath, 'r')
-        i = int(bookMarkFile.read())
-        if (i < len(book) - 1):
-            print("\033[092mStarting from position %s out of %s\033[0m" %
-                  (i, len(book)))
-        else:
-            print("\033[091mERROR: \033[0mBookmark is past length of text")
-            print("\033[092mStarting from the beginning\033[0m")
-            i = 0
-    else:
-        print("\033[091mERROR: \033[0mIt doesn't appear a bookmark exists")
-        print("\033[092mStarting from the beginning\033[0m")
-
-# if sel == 3 exit the program
 if sel != '3':
+    book = getBook()
+    # Default is that our starting position is at the beginning
+    i = 0
+    # Bookmark Handler
+    if sel == '1':
+        filePath = Path.cwd() / 'bookmark.txt'
+        if filePath.exists():
+            bookMarkFile = open(filePath, 'r')
+            i = int(bookMarkFile.read())
+            if (i < len(book) - 1):
+                print("\033[092mStarting from position %s out of %s\033[0m" %
+                    (i, len(book)))
+            else:
+                print("\033[091mERROR: \033[0mBookmark is past length of text")
+                print("\033[092mStarting from the beginning\033[0m")
+                i = 0
+        else:
+            print("\033[091mERROR: \033[0mIt doesn't appear a bookmark exists")
+            print("\033[092mStarting from the beginning\033[0m")
+
     # Main reading section
     while(i < len(book) - 1):
         j = 0
