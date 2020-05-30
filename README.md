@@ -1,4 +1,4 @@
-# romeoJuliet
+# romeoJuliet.py
 ## Overview
 A program that downloads the Project Gutenberg free license version of Romeo & Juliet and lets you read it 20 lines at a time.
 
