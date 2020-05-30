@@ -1,7 +1,10 @@
-import requests, colorama
-colorama.init()
 from pathlib import Path
+import requests
+import colorama
+colorama.init()
 
+# Function for determining whether we are using a locally
+#   stored book or the online book
 def getBook():
     bookPath = Path.cwd() / 'romeoJuliet.txt'
     if bookPath.exists():
@@ -15,6 +18,7 @@ def getBook():
         res.raise_for_status()
         book = res.text
     return book
+
 
 # Beginning Menu
 print("Welcome to Romeo and Juliet")
@@ -35,6 +39,7 @@ while sel != '0' and sel != '1' and sel != '2' and sel != '3':
     print("Please enter a selection: \033[0m", end='')
     sel = input()
 
+# Download handler
 if sel == '2':
     bookPath = Path.cwd() / 'romeoJuliet.txt'
     if bookPath.exists():
@@ -53,8 +58,9 @@ if sel == '2':
         print("Please enter a selection: \033[0m", end='')
         sel = input()
 
-book = getBook()
+book = getBook() # Our book is stored as a string
 
+# Default is that our starting position is at the beginning
 i = 0
 # Bookmark Handler
 if sel == '1':
@@ -63,14 +69,16 @@ if sel == '1':
         bookMarkFile = open(filePath, 'r')
         i = int(bookMarkFile.read())
         if (i < len(book) - 1):
-            print("\033[092mStarting from position %s out of %s\033[0m" % (i, len(book)))
+            print("\033[092mStarting from position %s out of %s\033[0m" %
+                  (i, len(book)))
         else:
             print("ERROR: Bookmark is past length of text")
             print("\033[092mStarting from the beginning\033[0m")
     else:
-        print ("It doesn't appear a bookmark exists")
-        print ("\033[092mStarting from the beginning\033[0m")
+        print("It doesn't appear a bookmark exists")
+        print("\033[092mStarting from the beginning\033[0m")
 
+# if sel == 3 exit the program
 if sel != '3':
     # Main reading section
     while(i < len(book) - 1):
@@ -93,7 +101,8 @@ if sel != '3':
             print("\033[093mCreate a bookmark? (y/n): \033[0m", end='')
             inp = input()
             if inp.lower() == 'y':
-                print("\033[092mCreating a bookmark at position %s out of %s in bookmark.txt\033[0m" % (l, len(book)))
+                print("\033[092mCreating a bookmark at position %s out of %s in bookmark.txt\033[0m" % (
+                    l, len(book)))
                 bookMarkFile = open(Path.cwd() / 'bookmark.txt', 'w')
                 bookMarkFile.write(str(l))
                 bookMarkFile.close()
