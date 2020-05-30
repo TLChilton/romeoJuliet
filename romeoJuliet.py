@@ -79,7 +79,8 @@ if sel != '0':
             print("\033[092mStarting from the beginning\033[0m")
 
     # Main reading section
-    while(i < len(book) - 1):
+    inp = ''
+    while inp.lower() != 'x':
         j = 0
         for k in range(i, len(book)):
             if book[k] == '\n':
@@ -96,12 +97,20 @@ if sel != '0':
         print("\033[093mPress enter to continue, \"B\" to go back a passage, or \"X\" to exit: \033[0m", end='')
         inp = input()
 
+        # Error handler for end of text
+        while i == len(book) - 1 and inp.lower() != 'x' and inp.lower() != 'b':
+            print('\033[091mERROR: \033[0mYou are at the end')
+            print("\033[093mEnter \"B\" to go back a passage, or \"X\" to exit: \033[0m", end='')
+            inp = input()
+
         # Going backwards
         if inp.lower() == 'b':
             i = l
-            if (i == 0):
-                print('\033[091mERROR: \033[0m You are at the beginning')
-            else:
+            while i == 0 and inp.lower() == 'b':
+                print('\033[091mERROR: \033[0mYou are at the beginning')
+                print("\033[093mPress enter to continue or \"X\" to exit: \033[0m", end='')
+                inp = input()
+            if i > 0:
                 i = l
                 j = 0
                 for k in range(i, 0, -1):
