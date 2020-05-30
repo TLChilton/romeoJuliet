@@ -98,9 +98,28 @@ if sel != '3':
             elif k == (len(book) - 1):
                 l = i
                 i = k
+        print ("\033[092mPosition %s out of %s\033[0m" % (l, len(book)))
         print(book[l:i])
-        print("\033[093mPress enter to continue or \"X\" to exit: \033[0m", end='')
+        print("\033[093mPress enter to continue, \"B\" to go back a passage, or \"X\" to exit: \033[0m", end='')
         inp = input()
+
+        # Going backwards
+        if inp.lower() == 'b':
+            i = l
+            if (i == 0):
+                print('\033[091mERROR: \033[0m You are at the beginning')
+            else:
+                i = l
+                j = 0
+                for k in range(i, 0, -1):
+                    if book[k] == '\n':
+                        j += 1
+                    if j == 20:
+                        i = k
+                        break
+                    elif k == 1:
+                        i = 0
+
         # Bookmark creation and program exit
         if inp.lower() == 'x':
             print("\033[093mCreate a bookmark? (y/n): \033[0m", end='')
